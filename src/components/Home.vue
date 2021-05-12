@@ -2,11 +2,11 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-2"></div>
+                <div class="col-1"></div>
                 <div class="col">
                     <OrderItem v-for="index in orderIndex" :key="index" :index="index"/>
                 </div>
-                <div class="col-2"></div>
+                <div class="col-1"></div>
             </div>
         </div>
     </div>

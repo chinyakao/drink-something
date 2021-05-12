@@ -5,15 +5,36 @@
                 <font-awesome-icon class="brand-icon" icon="glass-cheers" />
                 Drink Something
             </b-navbar-brand>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
 
                 <b-navbar-nav class="ml-auto">
-                    <b-form inline>
+                    <!-- <b-form inline>
                         <b-form-select @click="changeSorting(selected)" v-model="selected" :options="options" size="sm" class="mr-sm-2"></b-form-select>
-                    </b-form>
+                    </b-form> -->
                     
-                    <b-button v-b-modal.modal-1 variant="light" size="sm">
+                    <b-button class="m-1" variant="light" size="sm">
+                        <font-awesome-icon icon="long-arrow-alt-up" />
+                        Name Up
+                    </b-button>
+
+                    <b-button class="m-1" variant="light" size="sm">
+                        <font-awesome-icon icon="long-arrow-alt-down" />
+                        Name Down
+                    </b-button>
+
+                    <b-button class="m-1" variant="light" size="sm">
+                        <font-awesome-icon icon="long-arrow-alt-up" />
+                        Price Up
+                    </b-button>
+
+                    <b-button class="m-1" variant="light" size="sm">
+                        <font-awesome-icon icon="long-arrow-alt-down" />
+                        Price Down
+                    </b-button>
+
+                    <b-button class="m-1" v-b-modal.modal-1 variant="light" size="sm">
                         <font-awesome-icon icon="plus" />
                         Add Drink
                     </b-button>
@@ -33,7 +54,11 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-2" label="Price:" label-for="input-2">
+                            <b-form-group 
+                                id="input-group-2" 
+                                label="Price:" 
+                                label-for="input-2"
+                            >
                                 <b-form-input
                                 id="input-2"
                                 v-model="form.price"
@@ -49,7 +74,6 @@
                                     placeholder="Enter something..."
                                     rows="3"
                                     max-rows="6"
-                                    required
                                 ></b-form-textarea>
                             </b-form-group>
 
