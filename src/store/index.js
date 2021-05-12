@@ -13,42 +13,42 @@ const LS = {
 }
 
 const sort_func = {
-  sortName(orders){
-    function compare(a, b) {
-      if (a.drinkname < b.drinkname)
-        return -1;
-      if (a.drinkname > b.drinkname)
-        return 1;
-      return 0;
-    }
-    return orders.sort(compare)
+  unsort(orders){
+    return orders
   },
-  sortPrice(orders){
-    function compare(a, b) {
-      if (a.price < b.price)
-        return -1;
-      if (a.price > b.price)
-        return 1;
-      return 0;
-    }
-    return orders.sort(compare)
-  }
+  nameup(orders){
+    var temp = orders.slice().sort(function(a, b){
+      return a.drinkname > b.drinkname;
+    });
+
+    return temp
+  },
+  namedown(orders){
+    return this.nameup(orders).reverse()
+  },
+  priceup(orders){
+    var temp = orders.slice().sort(function(a, b){
+      return a.price - b.price;
+    });
+    return temp
+  },
+  pricedown(orders){
+    return this.priceup(orders).reverse()
+  },
 }
 
 export default new Vuex.Store({
   strict: true,
   state: {
     orders: [
-      {drinkname: 'aubble tea', price: 60, note: 'no sugar'},
-      {drinkname: 'green tea', price: 30, note: 'no ice'},
-      {drinkname: 'black tea', price: 35, note: 'half ice'},
     ],
     chooseIndex: 0,
-    sortBy: 0
   },
   getters: {
     orderIndex(state) {
-      return state.orders.map(order => state.orders.indexOf(order))
+      var new_orders = sort_func[state.route.name](state.orders)
+      var new_index = state.orders.map(order => new_orders.indexOf(order))
+      return new_index
     }
   },
   mutations: {
@@ -72,25 +72,11 @@ export default new Vuex.Store({
     },
     UPDATE_CHOOSEINDEX(state, chooseIndex){
       state.chooseIndex = chooseIndex
-    },
-    UPDATE_SORTBY(state, sortBy){
-      state.sortBy = sortBy
-    },
+    }
   },
   actions: {
     INIT_ORDERS({commit}){
-      // load local storage
-      if(this.state.sortBy == 1){
-        commit('SET_ORDERS', sort_func.sortName(LS.load()))
-      }else if(this.state.sortBy == 2){
-        commit('SET_ORDERS', sort_func.sortName(LS.load()).reverse())
-      }else if(this.state.sortBy == 3){
-        commit('SET_ORDERS', sort_func.sortPrice(LS.load()))
-      }else if(this.state.sortBy == 4){
-        commit('SET_ORDERS', sort_func.sortPrice(LS.load()).reverse())
-      }else{
-        commit('SET_ORDERS', LS.load())
-      }
+      commit('SET_ORDERS', LS.load())
     }
   },
   modules: {

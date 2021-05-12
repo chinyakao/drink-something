@@ -5,31 +5,28 @@
                 <font-awesome-icon class="brand-icon" icon="glass-cheers" />
                 Drink Something
             </b-navbar-brand>
+
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
 
-                <b-navbar-nav class="ml-auto">
-                    <!-- <b-form inline>
-                        <b-form-select @click="changeSorting(selected)" v-model="selected" :options="options" size="sm" class="mr-sm-2"></b-form-select>
-                    </b-form> -->
-                    
-                    <b-button class="m-1" variant="light" size="sm">
+                <b-navbar-nav class="ml-auto">                    
+                    <b-button @click="toNameUp" class="m-1" variant="light" size="sm">
                         <font-awesome-icon icon="long-arrow-alt-up" />
                         Name Up
                     </b-button>
 
-                    <b-button class="m-1" variant="light" size="sm">
+                    <b-button @click="toNameDown" class="m-1" variant="light" size="sm">
                         <font-awesome-icon icon="long-arrow-alt-down" />
                         Name Down
                     </b-button>
 
-                    <b-button class="m-1" variant="light" size="sm">
+                    <b-button @click="toPriceUp" class="m-1" variant="light" size="sm">
                         <font-awesome-icon icon="long-arrow-alt-up" />
                         Price Up
                     </b-button>
 
-                    <b-button class="m-1" variant="light" size="sm">
+                    <b-button @click="toPriceDown" class="m-1" variant="light" size="sm">
                         <font-awesome-icon icon="long-arrow-alt-down" />
                         Price Down
                     </b-button>
@@ -90,14 +87,6 @@
 export default {
     data(){
         return{
-            selected: 0,
-            options: [
-                { value: 0, text: 'sort by' },
-                { value: 1, text: 'name a-z' },
-                { value: 2, text: 'name z-a' },
-                { value: 3, text: 'price go up' },
-                { value: 4, text: 'price go down' },
-            ],
             form: {
                 drinkname: '',
                 price: '',
@@ -136,9 +125,26 @@ export default {
         toHome(){
            this.$router.push({ path: '/' })
         },
-        changeSorting(sortby){
-            this.$store.commit('UPDATE_SORTBY', sortby)
-        }
+        toNameUp(){
+            let path = `/nameup`
+            if (this.$route.path !== path) this.$router.push(path)
+            
+        },
+        toNameDown(){
+            let path = `/namedown`
+            if (this.$route.path !== path) this.$router.push(path)
+        },
+        toPriceUp(){
+            let path = `/priceup`
+            if (this.$route.path !== path) this.$router.push(path)
+        },
+        toPriceDown(){
+            let path = `/pricedown`
+            if (this.$route.path !== path) this.$router.push(path)
+        },
+        // changeSorting(sortby){
+        //     this.$store.commit('UPDATE_SORTBY', sortby)
+        // }
     }
 }
 </script>
@@ -152,10 +158,5 @@ export default {
     border-color: black;
     background-color: transparent;
     color: black;
-}
-select{
-	background-color: transparent !important; 
-	border-color: black !important;
-	border-radius: 1.5rem !important; 
 }
 </style>

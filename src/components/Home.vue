@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col">
-                    <OrderItem v-for="index in orderIndex" :key="index" :index="index"/>
+                    <OrderItem v-for="(item,index) in orderIndex" :key="index" :index="item"/>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -20,12 +20,6 @@ export default {
     },
     data(){
         return{
-            form: {
-                drinkname: '',
-                price: '',
-                note: ''
-            },
-            show: true
         }
     },
     computed:{

@@ -4,7 +4,7 @@
             <div class="col-2"></div>
             <div class="col text-left">
                 <b-card class="edit-section">
-                    <b-form @submit="onSubmit" v-if="show">
+                    <b-form @submit="onSubmit">
                         <b-form-group
                             id="input-group-1"
                             label="Drink Name:"
@@ -59,7 +59,6 @@ export default {
     },
     data(){
         return{
-            show: true
         }
     },
     mounted(){

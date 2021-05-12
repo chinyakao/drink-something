@@ -8,7 +8,27 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'unsort',
+    component: () => import( '../components/Home.vue'),
+  },
+  {
+    path: '/nameup',
+    name: 'nameup',
+    component: () => import( '../components/Home.vue'),
+  },
+  {
+    path: '/namedown',
+    name: 'namedown',
+    component: () => import( '../components/Home.vue'),
+  },
+  {
+    path: '/priceup',
+    name: 'priceup',
+    component: () => import( '../components/Home.vue'),
+  },
+  {
+    path: '/pricedown',
+    name: 'pricedown',
     component: () => import( '../components/Home.vue'),
   },
   {

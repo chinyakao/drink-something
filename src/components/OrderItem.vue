@@ -29,7 +29,7 @@ export default {
         index:{
             type: Number,
             require: true
-        }
+        },
     },
     computed:{
         order(){
